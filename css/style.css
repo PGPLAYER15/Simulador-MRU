@@ -1,0 +1,164 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-image: url(/MovimientoRectilineo/img/image.png);
+    background-size: cover;
+}
+
+.controls {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d0d0d0;
+}
+
+canvas {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    width: 100px;
+    margin: 5px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: #bbb;
+}
+
+select {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    margin: 5px;
+    outline: none;
+}
+
+select:focus {
+    border-color: #bbb;
+}
+
+#customGravityContainer {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    margin-right: 10px;
+}
+
+/* Estilos para el contenedor de opciones avanzadas */
+#advancedOptionsContainer {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 450px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Estilos para los grupos de opciones avanzadas */
+.advanced-option-group {
+    margin-bottom: 15px;
+}
+
+.advanced-option-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.advanced-option-group input,
+.advanced-option-group select {
+    width: 95%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.advanced-option-group button {
+    width: 95%;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #e0e0e0;
+}
+
+.summary-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+#downloadSummaryButton {
+    background-color: #4CAF50; /* Color verde */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px auto;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none; /* Oculto inicialmente */
+}
+
+#downloadSummaryButton:hover {
+    background-color: #45a049; /* Color verde más oscuro al pasar el mouse */
+}

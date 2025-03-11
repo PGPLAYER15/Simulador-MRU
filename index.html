@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de MRU</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Simulador de Movimiento Rectilíneo Uniforme</h1>
+    <div class="controls">
+        <label for="velocityInput">Velocidad (m/s):</label>
+        <input type="number" id="velocityInput" placeholder="Ingresa un valor">
+        <button id="startButton">Iniciar Movimiento</button>
+        <button id="stopButton">Detener Movimiento</button>
+    </div>
+    
+    <canvas id="fallCanvas" width="1200" height="600"></canvas>
+    
+    <div id="summaryContainer" class="summary-container"></div>
+        <button id="summaryButton">Ver Resumen</button>
+    </div>
+    <div id="summaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Resumen del Movimiento</h2>
+            <p id="summaryText"></p>
+        </div>
+</body>
+<script src="index.js"></script>
+</html>
