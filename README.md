@@ -63,9 +63,9 @@ Este proyecto está disponible como código abierto.
 
 ## 👨‍💻 Autores
 
-Marco Vinicio Palazuelos Leon
-Carlos Eduardo Rios Cazares
-Nelson Ivan Reyes Segoviano
+-Marco Vinicio Palazuelos Leon
+-Carlos Eduardo Rios Cazares
+-Nelson Ivan Reyes Segoviano
 ---
 
 ¡Disfruta aprendiendo física de manera interactiva!
