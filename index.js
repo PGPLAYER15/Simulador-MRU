@@ -310,14 +310,18 @@ totalDistanceInput.addEventListener("change", function() {
         totalDistanceInput.value = totalDistance;
     }
 });
-
+//BUG FIXED
 startButton.addEventListener("click", function () {
+    if (isMoving) {
+        stopAnimation(); // Detiene la animación antes de iniciar una nueva
+    }
+
     const velocity = parseFloat(velocityInput.value);
     const distance = parseFloat(distanceInput.value);
-    
+
     if (!isNaN(velocity) && velocity > 0) {
         ball.velocityX = velocity;
-        
+
         if (!isNaN(distance) && distance > 0) {
             if (distance > totalDistance) {
                 alert(`La distancia objetivo no puede ser mayor que la distancia total (${totalDistance}m).`);
@@ -327,7 +331,7 @@ startButton.addEventListener("click", function () {
         } else {
             targetDistance = 0;
         }
-        
+
         resetBall();
         isMoving = true;
         animate();
@@ -337,6 +341,12 @@ startButton.addEventListener("click", function () {
     }
 });
 
+// Función para detener la animación
+function stopAnimation() {
+    isMoving = false; // Detiene el estado de movimiento
+    cancelAnimationFrame(animationFrame); // Detiene la animación
+    resetBall(); // Reinicia la posición de la bola
+}
 stopButton.addEventListener("click", function () {
     if (isMoving) {
         cancelAnimationFrame(animationFrame);
