@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Simulador de Movimiento Rectilíneo Uniforme</h1>
+    <h1>Simulador de Movimiento Rectilíneo Uniformemente Acelerado</h1>
     <div class="controls">
         <div class="config-group">
             <label for="totalDistanceInput">Distancia total del recorrido (m):</label>
@@ -23,6 +23,10 @@
             <label for="distanceInput">Distancia objetivo (m):</label>
             <input type="number" id="distanceInput" placeholder="Opcional" min="0" step="any">
             <div id="estimatedTime"></div>
+        </div>
+        <div class="config-group">
+            <label for="accelerationInput">Aceleración (m/s²):</label>
+            <input type="number" id="accelerationInput" placeholder="Ingresa un valor" min="0" step="any">
         </div>
         
         <div class="button-group">

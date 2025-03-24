@@ -5,6 +5,7 @@ const stopButton = document.getElementById("stopButton");
 const velocityInput = document.getElementById("velocityInput");
 const distanceInput = document.getElementById("distanceInput");
 const totalDistanceInput = document.getElementById("totalDistanceInput"); // Nuevo input para distancia total
+const accelerationInput = document.getElementById("accelerationInput"); // Nuevo input para aceleración
 const summaryButton = document.getElementById("summaryButton");
 const summaryContainer = document.getElementById("summaryContainer");
 
@@ -21,7 +22,7 @@ let timeToTarget = 0;
 let cameraOffset = 0; // Para seguir al objeto cuando se mueve fuera de la pantalla visible
 let totalDistance = DEFAULT_CANVAS_WIDTH - 50; // Distancia total por defecto (ajustar más tarde)
 let pixelsPerMeter = 1; // Escala: 1 píxel = 1 metro (ajustable)
-
+let acceleration = 0; // Agregar aceleración para MRUA
 let ball = {
     x: 50,
     y: canvas.height / 2,
@@ -69,6 +70,7 @@ function resetBall() {
     draw();
 }
 
+
 function update() {
     if (!isMoving) return;
 
@@ -78,7 +80,11 @@ function update() {
 
     elapsedTime = (performance.now() - startTime) / 1000; // Segundos
     const prevX = ball.x;
-    ball.x += ball.velocityX * pixelsPerMeter * timeStep;
+    
+    // Aplicar aceleración en MRUA: v = v0 + at, x = x0 + v0t + (1/2)at^2
+    ball.velocityX += ball.accelerationX * timeStep; // v = v0 + at
+    ball.x += (ball.velocityX * pixelsPerMeter * timeStep) + (0.5 * ball.accelerationX * Math.pow(timeStep, 2) * pixelsPerMeter);
+    
     distanceTraveled = (ball.x - 50) / pixelsPerMeter;
 
     // Manejar cámara siguiendo al objeto cuando se sale de pantalla
@@ -122,6 +128,7 @@ function update() {
         }, 3000);
     }
 }
+
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -198,7 +205,7 @@ function draw() {
             // Texto "META"
             ctx.fillStyle = "white";
             ctx.font = "bold 12px Arial";
-            ctx.fillText("META", targetX + 5, ball.y - 85);
+            ctx.fillText("", targetX + 5, ball.y - 85);
             
             // Mostrar tiempo predicho o tiempo real
             if (targetReached) {
@@ -280,14 +287,17 @@ function animate() {
     }
 }
 
-// Función para calcular tiempo estimado
 function calculateEstimatedTime() {
-    const velocity = parseFloat(velocityInput.value);
+    const velocity = parseFloat(velocityInput.value); // Velocidad final
+    const initialVelocity = parseFloat(velocityInput.value); // Velocidad inicial (puede ser 0)
+    const acceleration = parseFloat(accelerationInput.value); // Aceleración
     const distance = parseFloat(distanceInput.value);
-    
-    if (!isNaN(velocity) && velocity > 0 && !isNaN(distance) && distance > 0) {
-        const time = distance / velocity;
+
+    if (!isNaN(velocity) && velocity > 0 && !isNaN(initialVelocity) && !isNaN(acceleration) && acceleration > 0 && !isNaN(distance) && distance > 0) {
+        // Formula para tiempo en MRUA: t = (v - v0) / a
+        const time = Math.sqrt((2 * distance) / acceleration); 
         const timeDisplay = document.getElementById('estimatedTime');
+        
         if (timeDisplay) {
             timeDisplay.textContent = `Tiempo estimado: ${time.toFixed(2)} segundos`;
             timeDisplay.style.display = 'block';
@@ -318,9 +328,11 @@ startButton.addEventListener("click", function () {
 
     const velocity = parseFloat(velocityInput.value);
     const distance = parseFloat(distanceInput.value);
+    const acceleration = parseFloat(accelerationInput.value); // Obtener la aceleración
 
     if (!isNaN(velocity) && velocity > 0) {
         ball.velocityX = velocity;
+        ball.accelerationX = !isNaN(acceleration) ? acceleration : 0; // Asignar aceleración si es válida
 
         if (!isNaN(distance) && distance > 0) {
             if (distance > totalDistance) {
@@ -340,6 +352,7 @@ startButton.addEventListener("click", function () {
         alert("Ingresa una velocidad válida.");
     }
 });
+
 
 // Función para detener la animación
 function stopAnimation() {
@@ -413,7 +426,8 @@ summaryButton.addEventListener("click", function () {
         <p>Distancia total: ${totalDistance} m</p>
         <p><strong>Resultados actuales:</strong></p>
         <p>Tiempo transcurrido: ${elapsedTime.toFixed(2)} s</p>
-        <p>Distancia recorrida: ${distanceTraveled.toFixed(2)} m (${((distanceTraveled/totalDistance)*100).toFixed(1)}%)</p>
+        <p>Distancia recorrida: ${distanceTraveled.toFixed(2)} m 
+(${totalDistance > 0 ? ((distanceTraveled / totalDistance) * 100).toFixed(1) : 0}%)</p>
         <p>Velocidad promedio: ${realVelocity.toFixed(2)} m/s</p>
         ${targetInfo}
     `;

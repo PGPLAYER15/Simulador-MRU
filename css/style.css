@@ -4,36 +4,105 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
-    background-image: url(/MovimientoRectilineo/img/image.png);
     background-size: cover;
 }
 
 .controls {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
     margin: 10px auto;
-    max-width: 400px;
+    max-width: 450px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinea todo el contenido a la izquierda */
+}
+
+/* Estilos para los labels */
+label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+    display: block;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    width: 100%; /* Hace que el label ocupe todo el ancho */
+}
+
+/* Contenedor de configuración alineado */
+.config-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+    margin-bottom: 15px;
+}
+
+/* Estilos para los campos de entrada */
+input[type="number"], select {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    width: calc(100% - 20px); /* Ajuste para que no sobresalga del contenedor */
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Color especial para el campo de aceleración */
+#accelerationInput {
+    border: 2px solid #ff5733;
+    background-color: #ffe6e6;
+    font-weight: bold;
+    color: #d43f00;
+}
+
+/* Efecto al hacer foco en un input */
+input[type="number"]:focus, select:focus {
+    border-color: #555;
+    background-color: #fff;
+    outline: none;
+}
+
+/* Botones */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 button {
-    background-color: #e0e0e0;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 5px;
     font-size: 14px;
-    color: #333;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #d0d0d0;
+    background-color: #0056b3;
 }
 
+/* Botones específicos */
+#startButton {
+    background-color: #28a745;
+}
+
+#stopButton {
+    background-color: #dc3545;
+}
+
+#summaryButton {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* Canvas */
 canvas {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -41,239 +110,4 @@ canvas {
     display: block;
     margin: 20px auto;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-input[type="number"] {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 8px;
-    font-size: 14px;
-    width: 100px;
-    margin: 5px;
-    outline: none;
-}
-
-input[type="number"]:focus {
-    border-color: #bbb;
-}
-
-select {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 8px;
-    font-size: 14px;
-    margin: 5px;
-    outline: none;
-}
-
-select:focus {
-    border-color: #bbb;
-}
-
-#customGravityContainer {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px auto;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #ffffff;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-label {
-    font-size: 14px;
-    color: #555;
-    margin-right: 10px;
-}
-
-/* Estilos para el contenedor de opciones avanzadas */
-#advancedOptionsContainer {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px auto;
-    max-width: 450px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-/* Estilos para los grupos de opciones avanzadas */
-.advanced-option-group {
-    margin-bottom: 15px;
-}
-
-.advanced-option-group label {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
-}
-
-.advanced-option-group input,
-.advanced-option-group select {
-    width: 95%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.advanced-option-group button {
-    width: 95%;
-    padding: 10px;
-    font-size: 14px;
-    background-color: #e0e0e0;
-}
-
-.summary-container {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 20px auto;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-#downloadSummaryButton {
-    background-color: #4CAF50; /* Color verde */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 20px auto;
-    font-size: 14px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: none; /* Oculto inicialmente */
-}
-
-#downloadSummaryButton:hover {
-    background-color: #45a049; /* Color verde más oscuro al pasar el mouse */
-}
-
-/* Añadir estos estilos a tu archivo CSS existente */
-
-.target-distance-container {
-    margin-top: 10px;
-    padding-top: 5px;
-    border-top: 1px solid #ddd;
-}
-
-#estimatedTime {
-    margin-top: 5px;
-    font-style: italic;
-    color: #666;
-    font-size: 14px;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.5s;
-}
-
-/* Añadir estos estilos a tu archivo CSS existente */
-
-.controls {
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.config-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-#estimatedTime {
-    margin-top: 5px;
-    font-style: italic;
-    color: #666;
-    font-size: 14px;
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.5s;
-}
-
-/* Estilos para el modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
 }
