@@ -93,43 +93,41 @@ function update() {
     }
 
     // Verificar si hemos alcanzado la distancia objetivo
-    if (targetDistance > 0 && !targetReached && distanceTraveled >= targetDistance) {
-        targetReached = true;
-        timeToTarget = elapsedTime;
-        
-        // Mostrar notificación
-        const notification = document.createElement("div");
-        notification.className = "notification";
-        notification.textContent = `¡Distancia objetivo de ${targetDistance}m alcanzada en ${timeToTarget.toFixed(2)} segundos!`;
-        document.body.appendChild(notification);
-        
-        // Eliminar la notificación después de 3 segundos
-        setTimeout(() => {
-            notification.style.opacity = "0";
-            setTimeout(() => notification.remove(), 500);
-        }, 3000);
-    }
-
-    if (ball.x >= ball.ground) {
-        ball.x = ball.ground;
-        cancelAnimationFrame(animationFrame);
-        isMoving = false;
-        stopButton.textContent = "Detener Movimiento";
-        
-        // Notificación de llegada al final
-        const notification = document.createElement("div");
-        notification.className = "notification";
-        notification.textContent = `¡Recorrido completado! Distancia total: ${distanceTraveled.toFixed(2)}m en ${elapsedTime.toFixed(2)} segundos`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.opacity = "0";
-            setTimeout(() => notification.remove(), 500);
-        }, 3000);
-    }
+if (targetDistance > 0 && !targetReached && distanceTraveled >= targetDistance) {
+    targetReached = true;
+    timeToTarget = elapsedTime;
+    
+    // Mostrar notificación
+    const notification = document.createElement("div");
+    notification.className = "notification";
+    notification.textContent = `¡Distancia objetivo de ${targetDistance}m alcanzada en ${timeToTarget.toFixed(2)} segundos!`;
+    document.body.appendChild(notification);
+    
+    // Eliminar la notificación después de 3 segundos
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
 }
 
-
+if (ball.x >= ball.ground) {
+    ball.x = ball.ground;
+    cancelAnimationFrame(animationFrame);
+    isMoving = false;
+    stopButton.textContent = "Detener Movimiento";
+    
+    // Notificación de llegada al final
+    const notification = document.createElement("div");
+    notification.className = "notification";
+    notification.textContent = `¡Recorrido completado! Distancia total: ${Math.round(distanceTraveled)}m en ${elapsedTime.toFixed(2)} segundos`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        setTimeout(() => notification.remove(), 500);
+    }, 3000);
+  }
+}   
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
@@ -421,16 +419,14 @@ summaryButton.addEventListener("click", function () {
     }
     
     summaryText.innerHTML = `
-        <p><strong>Parámetros iniciales:</strong></p>
-        <p>Velocidad configurada: ${ball.velocityX} m/s</p>
-        <p>Distancia total: ${totalDistance} m</p>
-        <p><strong>Resultados actuales:</strong></p>
-        <p>Tiempo transcurrido: ${elapsedTime.toFixed(2)} s</p>
-        <p>Distancia recorrida: ${distanceTraveled.toFixed(2)} m 
-(${totalDistance > 0 ? ((distanceTraveled / totalDistance) * 100).toFixed(1) : 0}%)</p>
-        <p>Velocidad promedio: ${realVelocity.toFixed(2)} m/s</p>
-        ${targetInfo}
-    `;
+    <p><strong>Parámetros iniciales:</strong></p>
+    <p>Velocidad configurada: ${ball.velocityX.toFixed(0)} m/s</p>
+    <p>Distancia total: ${totalDistance} m</p>
+    <p><strong>Resultados actuales:</strong></p>
+    <p>Tiempo transcurrido: ${elapsedTime.toFixed(2)} s</p>
+    <p>Velocidad promedio: ${realVelocity.toFixed(2)} m/s</p>
+    ${targetInfo}
+`;
     summaryModal.style.display = "block";
 });
 
