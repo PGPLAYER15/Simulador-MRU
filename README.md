@@ -1,4 +1,4 @@
-# Simulador de Movimiento Rectilíneo Uniforme (MRU)
+# Simulador de Movimiento Rectilíneo Uniforme (MRUA)
 
 Este proyecto es un simulador interactivo que permite visualizar el movimiento rectilíneo uniforme de un objeto. Ideal para estudiantes y educadores que buscan una herramienta didáctica para comprender los principios básicos de la cinemática.
 
